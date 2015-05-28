@@ -11,7 +11,6 @@ import org.apache.camel.impl.DefaultProducer;
 
 import com.redhat.lightblue.client.LightblueClient;
 import com.redhat.lightblue.client.request.AbstractLightblueDataRequest;
-import com.redhat.lightblue.client.response.LightblueResponse;
 
 public class LightblueDataEndpoint extends DefaultEndpoint {
 
@@ -33,8 +32,7 @@ public class LightblueDataEndpoint extends DefaultEndpoint {
                 if (request == null) {
                     throw new Exception("request cannot be null");
                 }
-                LightblueResponse response = lightblueClient.data(request);
-                exchange.getOut().setBody(response);
+                exchange.getOut().setBody(lightblueClient.data(request));
             }
 
         };

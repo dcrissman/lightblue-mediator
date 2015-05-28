@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.apache.camel.Handler;
 import org.apache.camel.Headers;
-import org.apache.commons.lang3.StringUtils;
 
 import com.redhat.lightblue.client.request.data.DataInsertRequest;
 
@@ -18,8 +17,8 @@ public class LightblueInsertRequestTransformer {
     }
 
     public LightblueInsertRequestTransformer(String entityName, String entityVersion) {
-        if (StringUtils.isEmpty(entityName)) {
-            throw new IllegalArgumentException("entityName cannot be null or empty");
+        if (entityName == null) {
+            throw new IllegalArgumentException("entityName cannot be null");
         }
 
         this.entityName = entityName;
