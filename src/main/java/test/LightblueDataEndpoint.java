@@ -1,5 +1,6 @@
 package test;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.Consumer;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -16,7 +17,9 @@ public class LightblueDataEndpoint extends DefaultEndpoint {
 
     private final LightblueClient lightblueClient;
 
-    public LightblueDataEndpoint(LightblueClient lightblueClient) {
+    public LightblueDataEndpoint(LightblueClient lightblueClient, CamelContext camelContext) {
+        super();
+        super.setCamelContext(camelContext);
         this.lightblueClient = lightblueClient;
     }
 
@@ -26,7 +29,10 @@ public class LightblueDataEndpoint extends DefaultEndpoint {
 
             @Override
             public void process(Exchange exchange) throws Exception {
-                AbstractLightblueDataRequest request = exchange.getIn(AbstractLightblueDataRequest.class);
+                AbstractLightblueDataRequest request = exchange.getIn().getBody(AbstractLightblueDataRequest.class);
+                if (request == null) {
+                    throw new Exception("request cannot be null");
+                }
                 LightblueResponse response = lightblueClient.data(request);
                 exchange.getOut().setBody(response);
             }
@@ -42,6 +48,11 @@ public class LightblueDataEndpoint extends DefaultEndpoint {
     @Override
     public boolean isSingleton() {
         return false;
+    }
+
+    @Override
+    protected String createEndpointUri() {
+        return "someuri"; //TODO somehow generate based on lightblueClient?
     }
 
 }
