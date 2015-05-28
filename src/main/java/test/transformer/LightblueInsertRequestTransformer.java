@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.camel.Handler;
 import org.apache.camel.Headers;
 
+import com.redhat.lightblue.client.projection.FieldProjection;
 import com.redhat.lightblue.client.request.data.DataInsertRequest;
 
 public class LightblueInsertRequestTransformer {
@@ -29,6 +30,7 @@ public class LightblueInsertRequestTransformer {
     public DataInsertRequest transform(Object[] body, @Headers Map<String, Object> headers) {
         DataInsertRequest insertRequest = new DataInsertRequest(entityName, entityVersion);
         insertRequest.create(body);
+        insertRequest.returns(FieldProjection.includeFieldRecursively("*")); //TODO doing now for simplicity, revisit.
 
         return insertRequest;
     }
