@@ -1,6 +1,7 @@
 {
     "entityInfo": {
         "name": "user",
+        "defaultVersion": "1.0.0",
         "datastore": {
             "backend":"mongo",
             "collection": "user",
@@ -23,7 +24,7 @@
              "find": ["anyone"]
         },
         "fields": {
-            "_id": {"type": "string"},
+            "_id": {"type": "uid"},
             "firstName": {"type": "string"},
             "lastName": {"type": "string"}
         }
