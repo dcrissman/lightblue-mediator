@@ -24,7 +24,7 @@
              "find": ["anyone"]
         },
         "fields": {
-            "_id": {"type": "string"},
+            "_id": {"type": "uid"},
             "firstName": {"type": "string"},
             "lastName": {"type": "string"}
         }
