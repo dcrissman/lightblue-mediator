@@ -29,7 +29,7 @@ public class BeforeAfterTestRule implements TestRule {
         //Create statement chain
         Statement newStatement = base;
         for (TestClass extension : extensions) {
-            newStatement = prepareBeforeClasses(extension, base);
+            newStatement = prepareBeforeClasses(extension, newStatement);
             newStatement = prepareAfterClasses(extension, newStatement);
             newStatement = prepareRules(extension, newStatement, description);
             newStatement = prepareBefores(extension, newStatement, null);
