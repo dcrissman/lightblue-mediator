@@ -2,13 +2,12 @@ package test.transformer;
 
 import java.util.Map;
 
-import org.apache.camel.Handler;
 import org.apache.camel.Headers;
 
 import com.redhat.lightblue.client.projection.FieldProjection;
 import com.redhat.lightblue.client.request.data.DataInsertRequest;
 
-public class LightblueInsertRequestTransformer {
+public class LightblueInsertRequestTransformer implements Transformer<Object[], DataInsertRequest> {
 
     private final String entityName;
     private final String entityVersion;
@@ -26,7 +25,7 @@ public class LightblueInsertRequestTransformer {
         this.entityVersion = entityVersion;
     }
 
-    @Handler
+    @Override
     public DataInsertRequest transform(Object[] body, @Headers Map<String, Object> headers) {
         DataInsertRequest insertRequest = new DataInsertRequest(entityName, entityVersion);
         insertRequest.create(body);

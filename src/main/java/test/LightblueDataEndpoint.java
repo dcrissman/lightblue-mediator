@@ -45,7 +45,7 @@ public class LightblueDataEndpoint extends DefaultEndpoint {
 
     @Override
     public boolean isSingleton() {
-        return false;
+        return false; //TODO can/should this be a singleton?
     }
 
     @Override
