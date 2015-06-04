@@ -1,9 +1,5 @@
 package test.verification;
 
-import java.util.Map;
-
-import org.apache.camel.Headers;
-
 import com.redhat.lightblue.client.response.LightblueErrorResponseException;
 import com.redhat.lightblue.client.response.LightblueResponse;
 
@@ -15,7 +11,7 @@ import com.redhat.lightblue.client.response.LightblueResponse;
 public class LightblueErrorVerifier extends Verifier<LightblueResponse> {
 
     @Override
-    public boolean doVerify(LightblueResponse body, @Headers Map<String, Object> headers) {
+    public boolean doVerify(final LightblueResponse body) {
         if (body.hasError()) {
             throw new LightblueErrorResponseException("Error returned in response: " + body.getText());
         }

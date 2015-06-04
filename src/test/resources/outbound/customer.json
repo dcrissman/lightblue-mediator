@@ -1,0 +1,42 @@
+{
+    "entityInfo": {
+        "name": "customer",
+        "defaultVersion": "1.0.0",
+        "datastore": {
+            "backend":"mongo",
+            "collection": "customer",
+            "datasource": "${mongo.datasource}"
+        },
+        "hooks": [
+            {
+                "name": "publishHook",
+                "actions": [
+                    "insert",
+                    "update",
+                    "delete"
+                ],
+                "configuration": {}
+            }
+        ]
+    },
+    "schema": {
+        "name": "customer",
+        "version": {
+            "value": "1.0.0",
+            "changelog": "blahblah"
+        },
+        "status": {
+            "value": "active"
+        },
+        "access" : {
+             "insert": ["anyone"],
+             "update": ["anyone"],
+             "delete": ["anyone"],
+             "find": ["anyone"]
+        },
+        "fields": {
+            "_id": {"type": "uid"},
+            "name": {"type": "string"}
+        }
+    }
+}

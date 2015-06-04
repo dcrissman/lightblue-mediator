@@ -15,7 +15,6 @@ import test.LightblueInboundRoute;
 import test.model.User;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.redhat.lightblue.client.expression.query.ValueQuery;
 import com.redhat.lightblue.client.projection.FieldProjection;
 import com.redhat.lightblue.client.request.data.DataFindRequest;
@@ -28,7 +27,7 @@ public class TestLightblueInboundRoute extends CamelTestSupport {
         @Override
         public JsonNode[] getMetadataJsonNodes() throws Exception {
             return new JsonNode[]{
-                    (ObjectNode) loadJsonNode("./user.json")
+                    loadJsonNode("./inbound/user.json")
             };
         }
 
@@ -44,7 +43,7 @@ public class TestLightblueInboundRoute extends CamelTestSupport {
 
     @Test
     public void testMessageToLightblue() throws Exception {
-        String message = loadResource("./user-message.xml");
+        String message = loadResource("./inbound/user-message.xml");
         template.sendBody(message);
 
         DataFindRequest findRequest = new DataFindRequest("user", null);

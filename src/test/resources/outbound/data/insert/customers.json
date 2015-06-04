@@ -1,0 +1,12 @@
+{
+    "entity": "customer",
+    "entityVersion": "1.0.0",
+    "data": [
+        {
+            "name": "Acme"
+        },
+        {
+            "name": "Red Hat"
+        }
+    ]
+}
